@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan CSS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #4a6fa5, #2c3e50);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .difficulty-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .difficulty-title {
+            border-bottom: 3px solid;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .easy .difficulty-title {
+            border-color: #2ecc71;
+            color: #27ae60;
+        }
+        
+        .medium .difficulty-title {
+            border-color: #f39c12;
+            color: #e67e22;
+        }
+        
+        .hard .difficulty-title {
+            border-color: #e74c3c;
+            color: #c0392b;
+        }
+        
+        .exercise {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #4a6fa5;
+        }
+        
+        .instructions {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .instructions h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .workspace {
+            border: 2px dashed #95a5a6;
+            padding: 20px;
+            min-height: 200px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+        
+        .hint {
+            background-color: #fdebd0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            border-left: 4px solid #f39c12;
+            margin-top: 10px;
+        }
+        
+        .solution-btn {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        
+        .solution-btn:hover {
+            background-color: #2c3e50;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .code {
+            font-family: 'Courier New', monospace;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .difficulty-section {
+                padding: 15px;
+            }
+        }
+        
+        p {
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .workspace > div:not(.flex-container):not(.card) {
+            width: 250px;
+            height: 150px;
+            padding: 20px;
+            border: 3px solid #3498db;
+            margin: 15px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 150px;
+            border: 2px dashed #ccc;
+            padding: 10px;
+        }
+
+        .box {
+            width: 80px;
+            height: 80px;
+            background-color: #3498db;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .middle {
+            align-self: stretch;
+            height: 120px;
+        }
+
+        .custom-btn {
+            padding: 12px 24px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .custom-btn:hover {
+            background-color: #27ae60;
+            transform: scale(1.05);
+        }
+
+        .custom-btn:active {
+            transform: scale(0.95);
+        }
+
+        .card {
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .card-content p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .card-content button {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .card-content button:hover {
+            background-color: #2980b9;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #3498db;
+        }
+
+        .toggle-btn {
+            display: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+        .nav-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: #2c3e50;
+            padding: 20px;
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin: 10px 0;
+        }
+
+        .toggle-btn {
+            display: block;
+        }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Latihan CSS</h1>
+        <p>Tingkat Mudah hingga Kompleks</p>
+    </header>
+    
+    <section class="difficulty-section easy">
+        <div class="difficulty-title">
+            <h2>Tingkat Mudah</h2>
+            <span>⭐</span>
+        </div>
+        
+        <div class="exercise">
+            <div class="instructions">
+                <h3>Latihan 1: Styling Teks</h3>
+                <p>Buatlah paragraf dengan ketentuan:</p>
+                <ul>
+                    <li>Warna teks: #2c3e50</li>
+                    <li>Ukuran font: 18px</li>
+                    <li>Tebal font: 500</li>
+                    <li>Jarak antar baris: 1.6</li>
+                    <li>Rata kiri-kanan (justify)</li>
+                </ul>
+            </div>
+            <div class="workspace">
+                <!-- Kerjakan di sini -->
+                <p>Ini adalah teks contoh. Ubah style teks ini sesuai dengan instruksi di atas.</p>
+            </div>
+            <button class="solution-btn" onclick="toggleSolution('solution1')">Tampilkan Solusi</button>
+            <div id="solution1" class="solution">
+                <p>CSS yang digunakan:</p>
+                <div class="code">
+                    p {<br>
+                    &nbsp;&nbsp;color: #2c3e50;<br>
+                    &nbsp;&nbsp;font-size: 18px;<br>
+                    &nbsp;&nbsp;font-weight: 500;<br>
+                    &nbsp;&nbsp;line-height: 1.6;<br>
+                    &nbsp;&nbsp;text-align: justify;<br>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <div class="instructions">
+                <h3>Latihan 2: Box Model</h3>
+                <p>Buatlah sebuah div dengan ketentuan:</p>
+                <ul>
+                    <li>Lebar: 250px, Tinggi: 150px</li>
+                    <li>Padding: 20px</li>
+                    <li>Border: 3px solid #3498db</li>
+                    <li>Margin: 15px</li>
+                    <li>Background color: #ecf0f1</li>
+                    <li>Border radius: 8px</li>
+                </ul>
+            </div>
+            <div class="workspace">
+                <!-- Kerjakan di sini -->
+                <div>Ini adalah kotak. Style div ini sesuai dengan instruksi di atas.</div>
+            </div>
+            <button class="solution-btn" onclick="toggleSolution('solution2')">Tampilkan Solusi</button>
+            <div id="solution2" class="solution">
+                <p>CSS yang digunakan:</p>
+                <div class="code">
+                    div {<br>
+                    &nbsp;&nbsp;width: 250px;<br>
+                    &nbsp;&nbsp;height: 150px;<br>
+                    &nbsp;&nbsp;padding: 20px;<br>
+                    &nbsp;&nbsp;border: 3px solid #3498db;<br>
+                    &nbsp;&nbsp;margin: 15px;<br>
+                    &nbsp;&nbsp;background-color: #ecf0f1;<br>
+                    &nbsp;&nbsp;border-radius: 8px;<br>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="difficulty-section medium">
+        <div class="difficulty-title">
+            <h2>Tingkat Menengah</h2>
+            <span>⭐⭐</span>
+        </div>
+        
+        <div class="exercise">
+            <div class="instructions">
+                <h3>Latihan 3: Flexbox Layout</h3>
+                <p>Buatlah container flexbox dengan 3 kotak di dalamnya dengan ketentuan:</p>
+                <ul>
+                    <li>Container: display flex, justify-content: space-between, align-items: center</li>
+                    <li>Setiap kotak: Lebar 80px, Tinggi 80px, Background #3498db, Margin 5px</li>
+                    <li>Kotak tengah: align-self: stretch (tinggi 120px)</li>
+                </ul>
+            </div>
+            <div class="workspace">
+                <!-- Kerjakan di sini -->
+                <div class="flex-container">
+                    <div class="box">1</div>
+                    <div class="box middle">2</div>
+                    <div class="box">3</div>
+                </div>
+            </div>
+            <button class="solution-btn" onclick="toggleSolution('solution3')">Tampilkan Solusi</button>
+            <div id="solution3" class="solution">
+                <p>CSS yang digunakan:</p>
+                <div class="code">
+                    .flex-container {<br>
+                    &nbsp;&nbsp;display: flex;<br>
+                    &nbsp;&nbsp;justify-content: space-between;<br>
+                    &nbsp;&nbsp;align-items: center;<br>
+                    &nbsp;&nbsp;height: 150px;<br>
+                    &nbsp;&nbsp;border: 2px dashed #ccc;<br>
+                    &nbsp;&nbsp;padding: 10px;<br>
+                    }<br><br>
+                    
+                    .box {<br>
+                    &nbsp;&nbsp;width: 80px;<br>
+                    &nbsp;&nbsp;height: 80px;<br>
+                    &nbsp;&nbsp;background-color: #3498db;<br>
+                    &nbsp;&nbsp;margin: 5px;<br>
+                    &nbsp;&nbsp;display: flex;<br>
+                    &nbsp;&nbsp;justify-content: center;<br>
+                    &nbsp;&nbsp;align-items: center;<br>
+                    &nbsp;&nbsp;color: white;<br>
+                    &nbsp;&nbsp;font-weight: bold;<br>
+                    }<br><br>
+                    
+                    .middle {<br>
+                    &nbsp;&nbsp;align-self: stretch;<br>
+                    &nbsp;&nbsp;height: 120px;<br>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <div class="instructions">
+                <h3>Latihan 4: Hover Effects</h3>
+                <p>Buatlah sebuah tombol dengan efek hover dengan ketentuan:</p>
+                <ul>
+                    <li>Tombol: Padding 12px 24px, Background #2ecc71, Warna teks putih, Border none, Border radius 4px, Font size 16px</li>
+                    <li>Efek hover: Background #27ae60, Transform scale(1.05), Transition 0.3s</li>
+                    <li>Efek aktif: Transform scale(0.95)</li>
+                </ul>
+            </div>
+            <div class="workspace">
+                <!-- Kerjakan di sini -->
+                <button class="custom-btn">Tombol Saya</button>
+            </div>
+            <button class="solution-btn" onclick="toggleSolution('solution4')">Tampilkan Solusi</button>
+            <div id="solution4" class="solution">
+                <p>CSS yang digunakan:</p>
+                <div class="code">
+                    .custom-btn {<br>
+                    &nbsp;&nbsp;padding: 12px 24px;<br>
+                    &nbsp;&nbsp;background-color: #2ecc71;<br>
+                    &nbsp;&nbsp;color: white;<br>
+                    &nbsp;&nbsp;border: none;<br>
+                    &nbsp;&nbsp;border-radius: 4px;<br>
+                    &nbsp;&nbsp;font-size: 16px;<br>
+                    &nbsp;&nbsp;cursor: pointer;<br>
+                    &nbsp;&nbsp;transition: all 0.3s ease;<br>
+                    }<br><br>
+                    
+                    .custom-btn:hover {<br>
+                    &nbsp;&nbsp;background-color: #27ae60;<br>
+                    &nbsp;&nbsp;transform: scale(1.05);<br>
+                    }<br><br>
+                    
+                    .custom-btn:active {<br>
+                    &nbsp;&nbsp;transform: scale(0.95);<br>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="difficulty-section hard">
+        <div class="difficulty-title">
+            <h2>Tingkat Kompleks</h2>
+            <span>⭐⭐⭐</span>
+        </div>
+        
+        <div class="exercise">
+            <div class="instructions">
+                <h3>Latihan 5: Card Component</h3>
+                <p>Buatlah komponen kartu (card) dengan ketentuan:</p>
+                <ul>
+                    <li>Kartu: Lebar 300px, Border radius 10px, Overflow hidden, Box shadow, Background putih</li>
+                    <li>Gambar: Lebar 100%, Tinggi 180px, Object-fit cover</li>
+                    <li>Konten: Padding 20px</li>
+                    <li>Judul: Font size 20px, Margin bottom 10px</li>
+                    <li>Tombol: Background #3498db, Warna putih, Padding 8px 16px, Border radius 4px, Border none, Display inline-block</li>
+                    <li>Efek hover pada tombol: Background #2980b9</li>
+                </ul>
+            </div>
+            <div class="workspace">
+                <!-- Kerjakan di sini -->
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x180" alt="Placeholder">
+                    <div class="card-content">
+                        <h3>Judul Kartu</h3>
+                        <p>Ini adalah deskripsi kartu. Ini adalah contoh pembuatan komponen kartu dengan HTML dan CSS.</p>
+                        <button>Baca Selengkapnya</button>
+                    </div>
+                </div>
+            </div>
+            <button class="solution-btn" onclick="toggleSolution('solution5')">Tampilkan Solusi</button>
+            <div id="solution5" class="solution">
+                <p>CSS yang digunakan:</p>
+                <div class="code">
+                    .card {<br>
+                    &nbsp;&nbsp;width: 300px;<br>
+                    &nbsp;&nbsp;border-radius: 10px;<br>
+                    &nbsp;&nbsp;overflow: hidden;<br>
+                    &nbsp;&nbsp;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);<br>
+                    &nbsp;&nbsp;background-color: white;<br>
+                    }<br><br>
+                    
+                    .card img {<br>
+                    &nbsp;&nbsp;width: 100%;<br>
+                    &nbsp;&nbsp;height: 180px;<br>
+                    &nbsp;&nbsp;object-fit: cover;<br>
+                    }<br><br>
+                    
+                    .card-content {<br>
+                    &nbsp;&nbsp;padding: 20px;<br>
+                    }<br><br>
+                    
+                    .card-content h3 {<br>
+                    &nbsp;&nbsp;font-size: 20px;<br>
+                    &nbsp;&nbsp;margin-bottom: 10px;<br>
+                    &nbsp;&nbsp;color: #2c3e50;<br>
+                    }<br><br>
+                    
+                    .card-content p {<br>
+                    &nbsp;&nbsp;color: #7f8c8d;<br>
+                    &nbsp;&nbsp;margin-bottom: 15px;<br>
+                    }<br><br>
+                    
+                    .card-content button {<br>
+                    &nbsp;&nbsp;background-color: #3498db;<br>
+                    &nbsp;&nbsp;color: white;<br>
+                    &nbsp;&nbsp;padding: 8px 16px;<br>
+                    &nbsp;&nbsp;border-radius: 4px;<br>
+                    &nbsp;&nbsp;border: none;<br>
+                    &nbsp;&nbsp;cursor: pointer;<br>
+                    &nbsp;&nbsp;transition: background-color 0.3s;<br>
+                    }<br><br>
+                    
+                    .card-content button:hover {<br>
+                    &nbsp;&nbsp;background-color: #2980b9;<br>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <div class="instructions">
+                <h3>Latihan 6: Responsive Navigation</h3>
+                <p>Buatlah navigasi responsif dengan ketentuan:</p>
+                <ul>
+                    <li>Navbar: Background #2c3e50, Padding 15px, Display flex, Justify-content space-between, Align-items center</li>
+                    <li>Logo: Warna putih, Font size 20px, Font weight bold</li>
+                    <li>Menu: Display flex, List-style none</li>
+                    <li>Item menu: Margin 0 15px</li>
+                    <li>Link: Warna putih, Text-decoration none, Transition 0.3s</li>
+                    <li>Efek hover pada link: Warna #3498db</li>
+                    <li>Tombol toggle: Display none secara default (untuk mobile)</li>
+                </ul>
+            </div>
+            <div class="workspace">
+                <!-- Kerjakan di sini -->
+                <nav class="navbar">
+                    <div class="logo">Logo</div>
+                    <ul class="nav-menu">
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#">Tentang</a></li>
+                        <li><a href="#">Layanan</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                    <div class="toggle-btn">☰</div>
+                </nav>
+            </div>
+            <button class="solution-btn" onclick="toggleSolution('solution6')">Tampilkan Solusi</button>
+            <div id="solution6" class="solution">
+                <p>CSS yang digunakan:</p>
+                <div class="code">
+                    .navbar {<br>
+                    &nbsp;&nbsp;background-color: #2c3e50;<br>
+                    &nbsp;&nbsp;padding: 15px;<br>
+                    &nbsp;&nbsp;display: flex;<br>
+                    &nbsp;&nbsp;justify-content: space-between;<br>
+                    &nbsp;&nbsp;align-items: center;<br>
+                    }<br><br>
+                    
+                    .logo {<br>
+                    &nbsp;&nbsp;color: white;<br>
+                    &nbsp;&nbsp;font-size: 20px;<br>
+                    &nbsp;&nbsp;font-weight: bold;<br>
+                    }<br><br>
+                    
+                    .nav-menu {<br>
+                    &nbsp;&nbsp;display: flex;<br>
+                    &nbsp;&nbsp;list-style: none;<br>
+                    }<br><br>
+                    
+                    .nav-menu li {<br>
+                    &nbsp;&nbsp;margin: 0 15px;<br>
+                    }<br><br>
+                    
+                    .nav-menu a {<br>
+                    &nbsp;&nbsp;color: white;<br>
+                    &nbsp;&nbsp;text-decoration: none;<br>
+                    &nbsp;&nbsp;transition: color 0.3s;<br>
+                    }<br><br>
+                    
+                    .nav-menu a:hover {<br>
+                    &nbsp;&nbsp;color: #3498db;<br>
+                    }<br><br>
+                    
+                    .toggle-btn {<br>
+                    &nbsp;&nbsp;display: none;<br>
+                    &nbsp;&nbsp;color: white;<br>
+                    &nbsp;&nbsp;font-size: 24px;<br>
+                    &nbsp;&nbsp;cursor: pointer;<br>
+                    }<br><br>
+                    
+                    /* Responsive styles */<br>
+                    @media (max-width: 768px) {<br>
+                    &nbsp;&nbsp;.nav-menu {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;flex-direction: column;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;width: 100%;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;position: absolute;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;top: 60px;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;left: 0;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;background-color: #2c3e50;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;padding: 20px;<br>
+                    &nbsp;&nbsp;}<br><br>
+                    
+                    &nbsp;&nbsp;.nav-menu.active {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;display: flex;<br>
+                    &nbsp;&nbsp;}<br><br>
+                    
+                    &nbsp;&nbsp;.nav-menu li {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;margin: 10px 0;<br>
+                    &nbsp;&nbsp;}<br><br>
+                    
+                    &nbsp;&nbsp;.toggle-btn {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;display: block;<br>
+                    &nbsp;&nbsp;}<br>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2023 Latihan CSS - Dari Tingkat Mudah hingga Kompleks</p>
+    </footer>
+
+    <script>
+        function toggleSolution(id) {
+            const solution = document.getElementById(id);
+            if (solution.style.display === 'block') {
+                solution.style.display = 'none';
+            } else {
+                solution.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
